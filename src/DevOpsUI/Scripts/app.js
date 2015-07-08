@@ -16,18 +16,24 @@
             .when('/', {
                 templateUrl: 'partials/login.html',
                 controller: 'MainController',
+            })
+            .when('/subscriptions', {
+                templateUrl: 'partials/subscriptions.html',
+                controller: 'SubscriptionsController',
+                requireADLogin: true
             });
 
         adalService.init(
-                {
-                    instance: "https://login.microsoftonline.com/",
-                    tenant: "aninditkarmakarlive.onmicrosoft.com",
-                    clientId: "7839a7c1-9615-4648-b453-7c54c96bc77f",
-                    cacheLocation: 'localStorage',
-                    redirectUri: 'http://localhost:57231/index.html'
-                },
-                $httpProvider
-            );
+            {
+                instance: "https://login.microsoftonline.com/",
+                tenant: "aninditkarmakarlive.onmicrosoft.com",
+                clientId: "7839a7c1-9615-4648-b453-7c54c96bc77f",
+                cacheLocation: 'localStorage',
+                redirectUri: 'http://localhost:57231/index.html',
+                loginResource: 'https://management.azure.com/'
+            },
+            $httpProvider
+        );
     }]);
 
 })();
